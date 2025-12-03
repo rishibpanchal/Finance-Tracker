@@ -121,6 +121,3 @@ Notes: For production, use a managed Postgres database and set `SQLALCHEMY_DATAB
 
 Small personal project. Add a license file to the repo if you want to publish it publicly.
 
-----
-
-If you want, I can create a short GitHub Actions workflow to build the Docker image and push to a registry or deploy to Render automatically — tell me which provider you prefer and I’ll scaffold it.
