@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4">
+  <h2 class="mb-4">Monthly Report</h2>
+  <canvas id="reportChart" height="100"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('reportChart').getContext('2d');
+  const data = {
+    labels: {{ summary.keys() | list | tojson }},
+    datasets: [{
+      label: 'Amount (₹)',
+      data: {{ summary.values() | list | tojson }},
+      backgroundColor: [
+        '#66bb6a', '#ef5350', '#42a5f5', '#ffa726', '#ab47bc', '#5c6bc0'
+      ],
+      borderWidth: 1
+    }]
+  };
+  new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
